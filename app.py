@@ -14,7 +14,7 @@ import json
 def write_msg(user_id, message, keyboard):
     vk.method('messages.send', {'user_id': user_id, 'message': message, "keyboard": keyboard, "random_id": time.time()})
 
-token = "a0fe4f932f2124985a4e9e906132a28ffbaa2243c57e67bcc89262a4c22753a42ae01b42d5d53327fbdff"
+token = "YOUR_TOKEN_HERE"
 
 vk = vk_api.VkApi(token=token)
 vk_session = vk
