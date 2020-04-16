@@ -64,7 +64,7 @@ while x==1:
                                     x=2
                                     write_msg(event.user_id, "Отменено", keyboard = open("keyboard.json", "r", encoding="UTF-8").read())
                                     break
-                                salt = b'\xff\xd7\x0fw\\\xaf$\xf9\xb4\xdd\xfa\x17@L\xc0\xd6'
+                                salt = #GENERATE SALT WITH os.urandom(16) AND PASTE HERE
                                 kdf = PBKDF2HMAC(
                                     algorithm=hashes.SHA256(),
                                     length=32,
@@ -99,7 +99,7 @@ while x==1:
                                     x=2
                                     write_msg(event.user_id, "Отменено", keyboard = open("keyboard.json", "r", encoding="UTF-8").read())
                                     break
-                                salt = b'\xff\xd7\x0fw\\\xaf$\xf9\xb4\xdd\xfa\x17@L\xc0\xd6'
+                                salt = #PASTE HERE SAME SALT AS ABOVE
                                 kdf = PBKDF2HMAC(
                                     algorithm=hashes.SHA256(),
                                     length=32,
