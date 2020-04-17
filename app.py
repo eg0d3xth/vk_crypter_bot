@@ -14,7 +14,7 @@ import json
 def write_msg(user_id, message, keyboard):
     vk.method('messages.send', {'user_id': user_id, 'message': message, "keyboard": keyboard, "random_id": time.time()})
 
-token = "a0fe4f932f2124985a4e9e906132a28ffbaa2243c57e67bcc89262a4c22753a42ae01b42d5d53327fbdff"
+token = "YOUR_TOKEN_HERE"
 
 vk = vk_api.VkApi(token=token)
 vk_session = vk
@@ -64,7 +64,7 @@ while x==1:
                                     x=2
                                     write_msg(event.user_id, "Отменено", keyboard = open("keyboard.json", "r", encoding="UTF-8").read())
                                     break
-                                salt = b'\xff\xd7\x0fw\\\xaf$\xf9\xb4\xdd\xfa\x17@L\xc0\xd6'
+                                salt = #GENERATE YOUR SALT WITH os.urandom(16)
                                 kdf = PBKDF2HMAC(
                                     algorithm=hashes.SHA256(),
                                     length=32,
@@ -100,7 +100,7 @@ while x==1:
                                     x=2
                                     write_msg(event.user_id, "Отменено", keyboard = open("keyboard.json", "r", encoding="UTF-8").read())
                                     break
-                                salt = b'\xff\xd7\x0fw\\\xaf$\xf9\xb4\xdd\xfa\x17@L\xc0\xd6'
+                                salt = PAST HERE SAME SALT AS ABOVE
                                 kdf = PBKDF2HMAC(
                                     algorithm=hashes.SHA256(),
                                     length=32,
