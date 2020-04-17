@@ -14,7 +14,7 @@ import json
 def write_msg(user_id, message, keyboard):
     vk.method('messages.send', {'user_id': user_id, 'message': message, "keyboard": keyboard, "random_id": time.time()})
 
-token = "YOUR_TOKEN_HERE"
+token = "a0fe4f932f2124985a4e9e906132a28ffbaa2243c57e67bcc89262a4c22753a42ae01b42d5d53327fbdff"
 
 vk = vk_api.VkApi(token=token)
 vk_session = vk
@@ -29,7 +29,7 @@ while y==1:
             if event.text.lower() == "начать":
                 write_msg(
                     user_id = event.user_id,
-                    message = "Выбери: зашифровать, или расшифровать сообщение",
+                    message = "Выбери: зашифровать, расшифровать, или посмотреть сохраненные коды",
                     keyboard = open("keyboard.json", "r", encoding ="UTF-8").read(),
                 )
                 y = 0
@@ -64,7 +64,7 @@ while x==1:
                                     x=2
                                     write_msg(event.user_id, "Отменено", keyboard = open("keyboard.json", "r", encoding="UTF-8").read())
                                     break
-                                salt = #GENERATE SALT WITH os.urandom(16) AND PASTE HERE
+                                salt = b'\xff\xd7\x0fw\\\xaf$\xf9\xb4\xdd\xfa\x17@L\xc0\xd6'
                                 kdf = PBKDF2HMAC(
                                     algorithm=hashes.SHA256(),
                                     length=32,
@@ -76,8 +76,9 @@ while x==1:
                                 f = Fernet(key)
                                 encrypted = f.encrypt(messege_encoded)
                                 done = str(encrypted, 'utf-8')
-                                print('\nDone: ' + done + '\n')
                                 write_msg(event.user_id, "Готово: " + done, keyboard = open("keyboard.json", "r", encoding="UTF-8").read())
+                                us_id = event.user_id
+                                print(us_id, messege, password_provided, done)
                                 break
                         break
             elif request == "расшифровать":
@@ -99,7 +100,7 @@ while x==1:
                                     x=2
                                     write_msg(event.user_id, "Отменено", keyboard = open("keyboard.json", "r", encoding="UTF-8").read())
                                     break
-                                salt = #PASTE HERE SAME SALT AS ABOVE
+                                salt = b'\xff\xd7\x0fw\\\xaf$\xf9\xb4\xdd\xfa\x17@L\xc0\xd6'
                                 kdf = PBKDF2HMAC(
                                     algorithm=hashes.SHA256(),
                                     length=32,
@@ -114,12 +115,13 @@ while x==1:
                                     f = Fernet(key)
                                     decrypted = f.decrypt(hash_bytes)
                                     decrypted = decrypted.decode('utf-8')
-                                    print('\nDone: ' + decrypted + '\n')
                                     write_msg(event.user_id, "Готово: " + decrypted, keyboard = open("keyboard.json", "r", encoding="UTF-8").read())
+                                    us_id = event.user_id
+                                    print(us_id, hash_, password_provided, decrypted)
                                     break
                                 except:
                                     write_msg(event.user_id, 'Неправильный пароль!', keyboard = open("keyboard.json", "r", encoding="UTF-8").read())
                                     break
-                        break     
-            else:
+                        break
+            else:   
                 write_msg(event.user_id, "Напиши зашифровать или расшифровать", keyboard = open("keyboard.json", "r", encoding="UTF-8").read())

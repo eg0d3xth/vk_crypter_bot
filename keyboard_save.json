@@ -1,0 +1,30 @@
+{
+    "one_time": false,
+    "buttons": [
+        [{
+            "action": {
+                "type": "text",
+                "payload": "{\"button\": \"2\"}",
+                "label": "зашифровать"
+            },
+            "color": "primary"
+        },
+        {
+            "action": {
+                "type": "text",
+                "payload": "{\"button\": \"2\"}",
+                "label": "Coxpaнить"
+            },
+            "color": "primary"
+        },
+        {
+            "action": {
+                "type": "text",
+                "payload": "{\"button\": \"2\"}",
+                "label": "расшифровать"
+            },
+            "color": "secondary"
+            }
+        ]
+    ]
+}
